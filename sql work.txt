@@ -1,0 +1,134 @@
+name char(50), 
+rollno int(10) , 
+residence varchar(50), 
+mother char(20), 
+father char(20),
+bloodgroup varchar(10), 
+rank int(10), 
+transport varchar(20), 
+religion char(20), 
+DOB varchar(20));
+
+ create table  vn(usn int, sname char, address varchar, phoneno varchar, gender char);
+
+create table students(
+code int primary key,
+name varchar(50) NOT NULL,
+desgi varchar(40),
+mobile char(10) unique key,
+mother varchar(50));
+
+insert into students values(1,'Abhinav',CR,9583498,Rita);
+
+mysql> use vanshika;
+Database changed
+mysql> create table students(
+    -> code int primary key,
+    -> name varchar(50) NOT NULL,
+    -> desgi varchar(40),
+    -> mobile char(10) unique key,
+    -> mother varchar(50));
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> show tables;
+
+mysql> insert into students values(1,'Abhinav','CR',9583498,'Rita');
+mysql> insert into students values(2,'Vaishnavi','newbie',9585698,'Reeta');
+mysql> insert into students values(3,'Jhalak','normal',95698,'Anu');
+mysql> insert into students values(4,'V','normal',956998,'Inu');
+mysql> insert into students values(5,'R','normal',951198,'S');
+mysql> insert into students values(6,'T','CR',954498,'S');
+mysql> insert into students values(7,'V','Bookworm',448498,'S');
+mysql> insert into students values(8,'V','normie',9448498,'P');
+mysql> insert into students values(9,'E','normie',9446698,'P');
+mysql> insert into students values(10,'D','normie',94468,'t');
+
+mysql> show tables;
+mysql>update emp set salary=90000 where name='nkcd';
+
+
+                                                                                                                                   PRACTICAL 1:
+
+create table EMPLOYEE(SSN int, NAME varchar(20), ADDRESS varchar(50),SEX char(10), SALARY varchar(20), SuperSSN int(10),DESIG char(10),PHONE char(12),JoiningDate varchar(20),PC varchar(20),Age varchar(10));
+mysql> insert EMPLOYEE values(1,'A','Bombay','F','40000',14,'Client','636827');
+mysql> insert EMPLOYEE values(2,'D','Bangalore','M','35000',24,'Client','636027');
+mysql> insert EMPLOYEE values(3,'T','Bangalore','F','40000','13','Reception','636827');
+mysql> insert EMPLOYEE values(4,'S','Uttarakhand','F','350000','1','Manager','631127');
+mysql> insert EMPLOYEE values(5,'Y','Delhi','M','40000','7','Reception','831127');
+
+mysql> select * from EMPLOYEE;
+Updating pre existing values:       mysql> update EMPLOYEE set NAME='Nihshank' where SSN=5;          mysql> update EMPLOYEE set NAME='Aadhya' where SSN=4;
+
+ALTER:
+Size of  a column: alter table <tablename> modify <columnname> <column datatype>(new size);
+Add a new column: alter table tablename ADD <columnname> <column datatype>(size);
+Add unique key: alter table employee add (constraint) unique (NAME);
+Add primary key: alter table employee add primary key(SSN);
+Delete column: alter table tablename DROP columnname;
+Change columnname: alter table tablenname change old-columnname new-name data-type(size);
+Modifying column size: alter table tablename modify columnname column-datatype(new size);
+Rename table: rename table oldname to newname;
+Drop primary key:  alter table marks DROP primary key;
+
+UPDATE;
+change column values: update tablename set columnname='new-value' where USN=10;
+
+DELETE ROW:delete from tablename where coulmn='value';     (column should be primary key obvio)
+
+Display selective row:         mysql> select * from EMPLOYEE where SEX='F';
+mysql> select * from EMPLOYEE where ADDRESS='Bangalore';
+IN KEYWORD,displaying selective rows:     select * from EMPLOYEE where DESIG IN ('Client','Manager');
+Display exceptions:            mysql> select * from EMPLOYEE where DESIG NOT IN ('Client','Manager');
+
+SELECT:   
+select NAME, SEX, DESIG from EMPLOYEE;
+select distinct(NAME) from tablename;
+
+SORTING:
+ascending: select * from student order by Sname;
+descending: select * from student order by Sname desc;
+
+BETWEEN KEYWORD:  mysql> select * from EMPLOYEE where SALARY BETWEEN 30000 AND 40000;
+//comparison operators:            mysql> select * from EMPLOYEE where SALARY<40000 OR SALARY>40000;
+DISTINCT KEYWORD:  removes single values without its duplicates.
+IN KEYWORD: extracts data based on list of values.
+select * from tablename where columnname IN(' ' , ' ');
+
+select distinct(SEX) from EMPLOYEE;
+mysql> select distinct(SALARY) from EMPLOYEE;
+mysql> alter table employee add check (SALARY >= 35000);
+ 
+alter table tablename alter columnname set default(values);
+begin transaction  truncate table EMPLOYEE rollback transaction;
+
+select columnname as temporarycolumnname from tablename;
+select * from tablename as temporarytablename;
+select count(columnname) from tablename;
+select avg(col) from employee;
+ select sum(col) from employee;
+ insert into employee values(6,'V','Chennai','F',null,null,'HR',null);
+select * from employee where PHONE is null;
+select * from employee where PHONE is not null;
+
+alter table tablename modify  columnname AUTO increment
+insert into tablename(columnname)
+
+May27: JOIN OPERATION
+select * from tableA inner join tableB;
+left join->   select * from tableA leftjoin tableB on table1name primarykey
+1st tablename dot =table2name . column name
+select firsttablename.studentname, seconmdtablename. primarykey from 1st tablename full outer join 2ndtablename on 1sttablename . unique i'd name = 2ndtablename primarykey
+
+PATTERN MATCHING:
+% for multiple characters ; _ for specified characters.
+select * from student where Residence like 'R%';
+select * from student where Residence like 'R__';
+select * from student where Residence like '%R';
+
+June.3'22
+create view display as select SNAME, SSID from students, marks where students.USN  = marks.SSID; select * from display;
+ insert into display (SNAME,USN) values. View won't let you insert, only c. update display set USN=2 where SName="Jahanvi";
+
+Nested Queries:
+SELECT: select * from employees where SSN IN(select  SSN from employees where Salary<50000);
+UPDATE:
