@@ -64,12 +64,16 @@ Size of  a column: alter table <tablename> modify <columnname> <column datatype>
 Add a new column: alter table tablename ADD <columnname> <column datatype>(size);
 Add unique key: alter table employee add (constraint) unique (NAME);
 Add primary key: alter table employee add primary key(SSN);
+Add foreign key:  alter table tablename1 add FOREIGN KEY(USN) REFERENCES tablename2(USN);
+Not Null: alter table tablename modify columnname datatype NOT NULL;
 Delete column: alter table tablename DROP columnname;
 Change columnname: alter table tablenname change old-columnname new-name data-type(size);
 Modifying column size: alter table tablename modify columnname column-datatype(new size);
 Rename table: rename table oldname to newname;
 Drop primary key:  alter table marks DROP primary key;
 
+DEFAULT:
+alter table tablename alter Columnname SET DEFAULT 'value';
 UPDATE;
 change column values: update tablename set columnname='new-value' where USN=10;
 
@@ -113,6 +117,9 @@ select * from employee where PHONE is not null;
 alter table tablename modify  columnname AUTO increment
 insert into tablename(columnname)
 
+ALIAS NAMES
+mysql> select Test2 as Score2, Final as Total FROM marks;
+
 May27: JOIN OPERATION
 select * from tableA inner join tableB;
 left join->   select * from tableA leftjoin tableB on table1name primarykey
@@ -127,8 +134,25 @@ select * from student where Residence like '%R';
 
 June.3'22
 create view display as select SNAME, SSID from students, marks where students.USN  = marks.SSID; select * from display;
- insert into display (SNAME,USN) values. View won't let you insert, only c. update display set USN=2 where SName="Jahanvi";
+ insert into display (SNAME,USN) values. View won't let you insert, only see. update display set USN=2 where SName="Jahanvi";
 
 Nested Queries:
 SELECT: select * from employees where SSN IN(select  SSN from employees where Salary<50000);
 UPDATE:
+
+default,check,join
+
+mysql> alter table PERSON add FOREIGN KEY(driver_id) references OWNS(driver_id);
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+mysql> select * from students where RollNo<=(select count(RollNo)/2 from students);
+June8: intersect, union, group the data and check the range
+select * from marks where DBMS<=(select count(DBMS)/2 from marks);
+Empty set (0.00 sec)
+
+mysql> select * from marks where Maths<=(select count(Maths)/2 from marks);
+select count(*) as Totalcars from car c,participated p where c.regno=p.regno and c.model='Alto';
+mysql> select i.iss_no, s.SName, b.book_name from Iss_rec i, membership m, students s, book b where i.mem_no=m.mem_no and m.stud_no=s.stud_no and  i.iss_date=curdate();
+mysql> select book_name from book where book_no in (select book_no from Iss_rec where mem_no in(select mem_no from membership where stud_no in(select stud_no from students where stud_no=10)));
